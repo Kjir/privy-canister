@@ -1,1 +1,5 @@
 **/build/**
+**/elm-stuff/build-artifacts
+**/elm-stuff/packages
+**/elm-stuff/generated-code
+**/yarn-error.log

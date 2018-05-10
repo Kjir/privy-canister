@@ -1,0 +1,16 @@
+version: '3'
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: ./devops/dev/Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+  dashboard:
+    build:
+      context: .
+      dockerfile: ./devops/prod/Dockerfile
+    ports:
+      - 8080:80

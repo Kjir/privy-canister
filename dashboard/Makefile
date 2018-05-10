@@ -1,7 +1,18 @@
-all: build build/index.html
+all: build
 
+.PHONY: build
 build:
-	mkdir build
+	docker-compose run dev build
 
-build/index.html:
-	cp src/index.html build
+docker-build:
+	docker-compose build dev
+
+start:
+	docker-compose up dev
+
+start-prod: build
+	docker-compose up dashboard
+
+test:
+	-rm yarn-error.log
+	docker-compose run dev test
