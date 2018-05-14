@@ -1,0 +1,12 @@
+version: '3.6'
+services:
+  todo:
+    build:
+      context: .
+      dockerfile: ./devops/dev/Dockerfile
+      target: build
+    volumes:
+      - .:/app
+    ports:
+      - 3001:80
+    command: dotnet watch run
