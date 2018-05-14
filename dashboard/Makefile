@@ -2,7 +2,7 @@ all: build
 
 .PHONY: build
 build:
-	docker-compose run dev build
+	docker-compose run --rm dev build
 
 docker-build:
 	docker-compose build dev
