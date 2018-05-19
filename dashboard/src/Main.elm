@@ -4,7 +4,7 @@ import Html exposing (Html, text, div, h1, input, button, ul, li)
 import Html.Attributes exposing (value)
 import Html.Events exposing (onClick, onInput)
 import Http
-import Json.Decode exposing (string)
+import Json.Decode as Decode
 import Json.Encode as Encode
 
 
@@ -61,7 +61,7 @@ saveItem : String -> Cmd Msg
 saveItem item =
     let
         request =
-            Http.post "http://localhost:3001/todo/item" (encodeItem item) string
+            Http.post "http://localhost:3001/todo/item" (encodeItem item) decodeItem
     in
         Http.send Saved request
 
@@ -76,6 +76,8 @@ encodeItem item =
     in
         Http.jsonBody encoded
 
+decodeItem : Decode.Decoder String
+decodeItem = Decode.field "item" Decode.string
 
 
 ---- VIEW ----
