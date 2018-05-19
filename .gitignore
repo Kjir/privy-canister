@@ -3,6 +3,7 @@
 **/elm-stuff/packages
 **/elm-stuff/generated-code
 **/yarn-error.log
+**/__pycache__
 todo-fsharp/tests/app.Tests/obj
 todo-fsharp/tests/app.Tests/bin
 todo-fsharp/src/app/obj

@@ -5,8 +5,10 @@ name = "pypi"
 
 [packages]
 quart = "*"
+gunicorn = "*"
 
 [dev-packages]
+inotify = "*"
 
 [requires]
 python_version = "3.6"

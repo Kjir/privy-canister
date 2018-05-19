@@ -32,4 +32,5 @@ async def todo():
 async def todo_options():
     return '', TODO_CORS_HEADERS
 
-app.run(host='0.0.0.0')
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
