@@ -8,5 +8,3 @@ start:
 
 test:
 	docker-compose run todo rspec
-start-prod: build
-	docker-compose up dashboard
