@@ -1,0 +1,11 @@
+version: '3.6'
+
+services:
+  todo:
+    build:
+      context: .
+      dockerfile: devops/dev/Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - 3001:5000
