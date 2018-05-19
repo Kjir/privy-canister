@@ -19,7 +19,7 @@ type alias Model =
 
 init : ( Model, Cmd Msg )
 init =
-    ( { items = [], newItem = "" }, Cmd.none )
+    ( { items = [], newItem = "" }, fetchItems )
 
 
 
@@ -31,6 +31,7 @@ type Msg
     | UpdateNewItem String
     | SaveItem String
     | Saved (Result Http.Error String)
+    | Fetched (Result Http.Error (List String))
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -55,7 +56,18 @@ update msg model =
 
         Saved (Err description) ->
             ( { model | newItem = "ERROR" }, Cmd.none )
+        Fetched (Ok items) ->
+            ( { model | items = model.items ++ items }, Cmd.none)
+        Fetched (Err description) ->
+            ( { model | newItem = "LIST ERROR" }, Cmd.none)
 
+
+fetchItems : Cmd Msg
+fetchItems =
+    let
+        request = Http.get "http://localhost:3001/todos" decodeTodos
+    in
+        Http.send Fetched request
 
 saveItem : String -> Cmd Msg
 saveItem item =
@@ -78,6 +90,9 @@ encodeItem item =
 
 decodeItem : Decode.Decoder String
 decodeItem = Decode.field "item" Decode.string
+
+decodeTodos : Decode.Decoder (List String)
+decodeTodos = Decode.field "todos" (Decode.list decodeItem)
 
 
 ---- VIEW ----

@@ -21,3 +21,7 @@ post '/todo/item/?' do
   data = JSON.parse request.body.read
   json item: data['item']
 end
+
+get '/todos/?' do
+  json todos: [{ item: 'first' }, { item: 'second' }]
+end
