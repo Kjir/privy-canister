@@ -8,3 +8,8 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 
 gem 'puma'
+
+group :development, :test do
+  gem 'rack-test'
+  gem 'rspec'
+end
